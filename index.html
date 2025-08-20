@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SIN — Strength in Numbers</title>
+  <meta name="description" content="SIN (Strength in Numbers) — a DayZ community focused on surviving alone and thriving together. Join the fight." />
+  <style>
+    /* =============================================================
+       🎯 QUICK EDITS (colors, logo, accent)
+       -------------------------------------------------------------
+       Change the CSS variables below to re‑skin the site quickly.
+       ============================================================= */
+    :root {
+      --bg: #0b0f10;            /* page background */
+      --panel: #0f1518;         /* card/section background */
+      --fg: #e6f3ea;            /* main text */
+      --muted: #a2b4aa;         /* secondary text */
+      --accent: #58ff9b;        /* toxic green accent */
+      --accent-2: #ffc857;      /* amber for warnings */
+      --alert: #ff6b6b;         /* red for EVR/alerts */
+      --line: #1b2428;          /* subtle borders */
+      --scanline: linear-gradient(rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.06) 50%);
+      --radius: 16px;           /* rounded corners */
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --maxw: 1100px;           /* content width */
+    }
+
+    /* Base reset */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--fg); line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Layout */
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .section { padding: 32px; margin: 28px 0; }
+    .section h2 { margin-top: 0; letter-spacing: 0.5px; }
+
+    /* Top Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(6px);
+      background: rgba(11,15,16,0.7); border-bottom: 1px solid var(--line);
+    }
+    .nav .inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--maxw); margin: 0 auto; padding: 14px 24px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.7px; }
+    .brand .logo { width: 32px; height: 32px; border-radius: 8px; background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%), #0b2b1b; border: 1px solid var(--line); }
+    .nav a { color: var(--fg); opacity: 0.9; }
+    .nav ul { display: flex; gap: 16px; align-items: center; margin: 0; padding: 0; list-style: none; }
+    .nav .cta { background: var(--accent); color: #032010; padding: 8px 12px; border-radius: 999px; font-weight: 700; }
+
+    /* Hero */
+    .hero {
+      position: relative; overflow: hidden; border-radius: 0 0 var(--radius) var(--radius);
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(1200px 400px at 50% 0%, rgba(88,255,155,0.08), transparent 60%),
+        radial-gradient(800px 800px at 100% 0%, rgba(88,255,155,0.06), transparent 55%),
+        #071012;
+    }
+    .heroScan {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: var(--scanline);
+      background-size: 100% 4px; mix-blend-mode: overlay; opacity: 0.25;
+      animation: flicker 7s infinite linear;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 0.22; }
+      50% { opacity: 0.28; }
+    }
+    .hero .wrap { max-width: var(--maxw); margin: 0 auto; padding: 72px 24px; display: grid; gap: 22px; }
+    .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; }
+    .title { font-size: clamp(28px, 4vw, 48px); line-height: 1.15; margin: 0; }
+    .subtitle { color: var(--muted); max-width: 75ch; }
+
+    .heroActions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { border: 1px solid var(--line); background: var(--panel); color: var(--fg); padding: 10px 14px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+    .btn:hover { border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: #062012; }
+
+    /* Status */
+    .statusBar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+    .stat { background: #0b1416; border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+    .stat strong { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Grid helpers */
+    .grid { display: grid; gap: 18px; }
+    .grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 12px; border: 1px solid var(--line); }
+    th, td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; }
+    th { background: #0d1518; color: var(--muted); font-weight: 700; letter-spacing: 0.3px; }
+
+    /* Tags */
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line); color: var(--muted); }
+    .tag.fix { color: #ff9db0; border-color: #3a1c24; background: #201016; }
+    .tag.content { color: #b8ffda; border-color: #193225; background: #0f1915; }
+    .tag.balance { color: #ffe4a3; border-color: #3b2b0e; background: #201b0b; }
+    .tag.event { color: #ffdede; border-color: #3b1b1b; background: #1e1212; }
+    .tag.qol { color: #cfe3ff; border-color: #132034; background: #0c141f; }
+
+    /* Callouts */
+    .callout { border: 1px solid var(--line); background: #0b1414; border-left: 4px solid var(--accent); padding: 14px; border-radius: 10px; }
+    .callout.warn { border-left-color: var(--accent-2); }
+    .callout.alert { border-left-color: var(--alert); }
+
+    /* Footer */
+    footer { padding: 40px 24px; border-top: 1px solid var(--line); color: var(--muted); text-align: center; }
+
+    /* Small helper styles */
+    .kbd { display: inline-block; padding: 2px 6px; border: 1px solid var(--accent); border-radius: 6px; font-weight: 700; color: var(--accent); background: rgba(88,255,155,0.1); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+
+    /* Mobile tweaks */
+    @media (max-width: 720px) {
+      .hero .wrap { padding: 56px 16px; }
+      .section { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- =============================================================
+       🔧 CONFIG — EDIT THESE VALUES ONLY (easy mode)
+       -------------------------------------------------------------
+       - serverName: Display name in the hero & status
+       - mapName:    Map shown in the status bar
+       - serverIP:   Your DayZ server IP:PORT (used by Copy buttons)
+       - discord:    Invite URL
+       - workshop:   Steam Workshop collection URL
+       - mapImage:   Link to your map image (can be local or remote)
+       - lastWipe:   Human string or ISO date string
+       - announcement: A short ticker message you can update manually
+       - traders:    Edit traders list + prices below
+       ============================================================= -->
+  <script>
+    const SIN_CONFIG = {
+      /* EDIT: Server display name */
+      serverName: "SIN | Strength in Numbers",
+      /* EDIT: Map name */
+      mapName: "Namalsk",
+      /* EDIT: Server IP:PORT */
+      serverIP: "000.000.000.000:2302",
+      /* EDIT: Discord invite */
+      discord: "https://discord.gg/your-invite",
+      /* EDIT: Steam Workshop collection */
+      workshop: "https://steamcommunity.com/sharedfiles/filedetails/?id=0000000000",
+      /* EDIT: Map image (replace with your hosted image or /assets/map.jpg) */
+      mapImage: "https://placehold.co/1400x900/0f1518/ffffff?text=Replace+with+your+Map+Image",
+      /* EDIT: Last wipe date */
+      lastWipe: "2025-06-30",
+      /* EDIT: Manual announcement/ticker */
+      announcement: "EVR activity elevated. Seek shelter during auroras.",
+      /* EDIT: Traders & Economy snapshot */
+      traders: [
+        { bunker: "KMUC", buys: "Guns", prices: "1–3 Platinum Gold nuggets" },
+        { bunker: "Devil's Eye", buys: "Construction Materials", prices: "1–2 nuggets" },
+        { bunker: "Red Bunker", buys: "Misc. Utilities", prices: "Varies" },
+        { bunker: "Blue Bunker", buys: "Medical / Filters / Charcoal", prices: "Filters x1→5 PG, Charcoal x1→1 PG" },
+      ],
+    };
+  </script>
+
+  <!-- =========================== NAV ============================ -->
+  <nav class="nav">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <a href="#home" class="brand-name">SIN: Strength in Numbers</a>
+      </div>
+      <ul class="mono">
+        <!-- EDIT: Add/remove nav items as needed -->
+        <li><a href="#start">Start Here</a></li>
+        <li><a href="#rules">Rules</a></li>
+        <li><a href="#map">Map & POIs</a></li>
+        <li><a href="#traders">Traders & Economy</a></li>
+        <li><a href="#changelog">Changelog</a></li>
+        <li><a href="#lore">Lore</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a class="cta" id="discordLink" href="#">Join Discord</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========================== HERO ============================ -->
+  <header class="hero" id="home" role="banner">
+    <div class="heroScan"></div>
+    <div class="wrap">
+      <div class="eyebrow mono">Survive alone. Thrive together.</div>
+      <h1 class="title" id="siteTitle">SIN — Strength in Numbers</h1>
+      <p class="subtitle" id="siteSubtitle">Two worlds, one community. Main ↔ HC via teleporter—bring your nerve and your friends.</p>
+
+      <div class="statusBar">
+        <div class="stat"><strong>Server</strong><span id="statName">—</span></div>
+        <div class="stat"><strong>Map</strong><span id="statMap">—</span></div>
+        <div class="stat"><strong>Players</strong><span id="statPlayers">—</span></div>
+        <div class="stat"><strong>Last Wipe</strong><span id="statWipe">—</span></div>
+      </div>
+
+      <div class="heroActions">
+        <button class="btn primary" id="btnGetStarted">Get Set Up</button>
+        <button class="btn" id="btnCopyIP">Copy Server IP</button>
+        <a class="btn" id="btnWorkshop" href="#" target="_blank" rel="noopener">Workshop Collection</a>
+      </div>
+
+      <div class="callout warn">
+        <strong>Announcement:</strong> <span id="announcement">—</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ===================== START HERE ======================= -->
+    <section id="start" class="section card">
+      <h2>Start Here — 5‑Minute Setup</h2>
+      <ol>
+        <li>Subscribe to our <a id="workshopLink" href="#" target="_blank" rel="noopener">Steam Workshop Collection</a>.</li>
+        <li>Launch DayZ → <span class="kbd">Mods</span> → ensure load order matches the collection.</li>
+        <li>Direct Connect: <span class="kbd mono" id="serverIP1">—</span> (Right‑click → Favorite)</li>
+        <li>If you see <em>mod mismatch</em>, hit <strong>Refresh Mods</strong>, then <strong>Retry</strong>.</li>
+        <li>Join our <a id="discordLink2" href="#" target="_blank" rel="noopener">Discord</a> for support and event pings.</li>
+      </ol>
+      <div class="callout">
+        <strong>Tip:</strong> Travel with a squad; death penalties still apply. Strength in numbers.
+      </div>
+    </section>
+
+    <!-- ======================= RULES ========================== -->
+    <section id="rules" class="section card">
+      <h2>Rules</h2>
+      <!-- EDIT: Replace rules below with your own policy -->
+      <div class="grid cols-2">
+        <ul>
+          <li>PvE etiquette applies. No griefing/harassment.</li>
+          <li>Base building limits posted in #rules (Discord).</li>
+          <li>No exploiting or glitching; report issues quickly.</li>
+          <li>Respect events. Listen to Marshals/Admins.</li>
+        </ul>
+        <ul>
+          <li>Names & comms must be appropriate.</li>
+          <li>Raiding policy: <em>Server‑specific</em> (see Discord).</li>
+          <li>Use <a href="#report">report forms</a> for tickets/appeals.</li>
+          <li>Monetization follows Bohemia’s rules.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== MAP & POIS ======================= -->
+    <section id="map" class="section card">
+      <h2>Map & Points of Interest</h2>
+      <!-- EDIT: Replace the image src with your actual map image URL -->
+      <img id="mapImage" src="" alt="Server map with marked POIs" style="width:100%; border-radius:12px; border:1px solid var(--line);" />
+      <p class="muted">Legend: Traders • Bunkers • Teleporters • Gas/Toxic Zones • Mutant Tiers (👤 Stag, ☣ Toxic, ⚡ EVR)</p>
+    </section>
+
+    <!-- ================= TRADERS & ECONOMY ==================== -->
+    <section id="traders" class="section card">
+      <h2>Traders & Economy</h2>
+      <p>
+        <strong>Platinum Gold</strong> is the backbone of SIN’s HC ↔ Main loop. Earn it by clearing content and achievements on HC,
+        convert to coins at the Teleporter Hub on Main, then spend on exclusive utilities, skins, and high‑slot containers.
+      </p>
+      <div class="callout">
+        <strong>Travel Smart:</strong> Currency is valuable. Move with a squad.
+      </div>
+      <!-- EDIT: Update the table rows via SIN_CONFIG.traders in the script OR manually here. -->
+      <div style="overflow:auto">
+        <table id="traderTable" aria-label="Trader prices">
+          <thead>
+            <tr><th>Bunker</th><th>Buys / Sells</th><th>Typical Prices</th></tr>
+          </thead>
+          <tbody>
+            <!-- Populated by JS from SIN_CONFIG.traders -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================== CHANGELOG ======================== -->
+    <section id="changelog" class="section card">
+      <h2>Changelog</h2>
+      <p class="muted">Keep the mystique. Pair cryptic lines with clear dates.</p>
+
+      <!-- EDIT: Duplicate a .log entry block below for each update -->
+      <div class="log">
+        <div class="tag content">[Content]</div>
+        <div class="mono" aria-label="date">2025‑08‑01</div>
+        <p>Echoes in the snow now answer back.</p>
+      </div>
+      <hr style="border:0;border-top:1px solid var(--line);" />
+      <div class="log">
+        <div class="tag fix">[Fix]</div>
+        <div class="mono" aria-label="date">2025‑07‑26</div>
+        <p>The rigs learned to argue with gravity.</p>
+      </div>
+      <hr style="border:0;border-top:1px solid var(--line);" />
+      <div class="log">
+        <div class="tag balance">[Balance]</div>
+        <div class="mono" aria-label="date">2025‑07‑18</div>
+        <p>Some pockets got heavier; some claws got duller.</p>
+      </div>
+
+      <div class="callout" style="margin-top:18px">
+        <strong>Hotfixes:</strong> Minor server restarts, config clean‑ups, and load order notes.
+      </div>
+    </section>
+
+    <!-- ======================== LORE ========================== -->
+    <section id="lore" class="section card">
+      <h2>Lore</h2>
+      <!-- EDIT: Replace this short lore block with your world‑building -->
+      <p>
+        The Teleporter stitched two dead worlds together. On one side, frost and auroras; on the other, factories that breathe toxins.
+        Between them: us. We didn’t choose the name SIN—survival did. Alone, you’re a rumor. Together, you’re a convoy.
+      </p>
+      <p>
+        STAG mutants roam where the air tastes like pennies. Lights flicker before EVR storms. When the sirens start,
+        basements and bunkers become churches. Strength in Numbers isn’t a motto. It’s instruction.
+      </p>
+    </section>
+
+    <!-- ======================= EVENTS ========================= -->
+    <section id="events" class="section card">
+      <h2>Events</h2>
+      <!-- EDIT: Replace with your event calendar or manual list -->
+      <div class="grid cols-2">
+        <div class="callout">
+          <strong>Convoy Ambush</strong><br />
+          Fridays @ 20:00 — Secure the intel; expect mutants.
+        </div>
+        <div class="callout">
+          <strong>Bunker Breach</strong><br />
+          Bi‑weekly — Marshals ping in Discord an hour prior.
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= FAQ ========================== -->
+    <section id="faq" class="section card">
+      <h2>FAQ</h2>
+      <!-- EDIT: Add/remove questions as needed -->
+      <details>
+        <summary class="mono">Can I solo?</summary>
+        <div>Yes, but it’s a survival game. The name is a hint—bring friends when you can.</div>
+      </details>
+      <details>
+        <summary class="mono">Wipe cadence?</summary>
+        <div>Posted in Discord and here (see Last Wipe in the hero status).</div>
+      </details>
+      <details>
+        <summary class="mono">I get a mod mismatch—help?</summary>
+        <div>Refresh your mods, match load order to the collection, and retry. If stuck, ask in #support on Discord.</div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> SIN — Strength in Numbers. Unofficial DayZ community.</p>
+      <p>This site is fan‑made and follows Bohemia Interactive’s monetization guidelines.</p>
+    </div>
+  </footer>
+
+  <script>
+    // =============================================================
+    // 🧠 BOOTSTRAP CONTENT FROM SIN_CONFIG
+    // -------------------------------------------------------------
+    // You can wire in BattleMetrics/CFTools later. For now we show
+    // configurable values and provide a copy‑IP helper.
+    // =============================================================
+
+    function byId(id) { return document.getElementById(id); }
+    function setText(id, text) { const el = byId(id); if (el) el.textContent = text; }
+
+    // Fill hero + links
+    setText("siteTitle", "SIN — Strength in Numbers");
+    setText("statName", SIN_CONFIG.serverName);
+    setText("statMap", SIN_CONFIG.mapName);
+    setText("statWipe", formatWipe(SIN_CONFIG.lastWipe));
+    setText("announcement", SIN_CONFIG.announcement);
+
+    // Players: placeholder (set to "—" or manually update)
+    setText("statPlayers", "See Discord");
+
+    // Links
+    const discordLinks = [byId("discordLink"), byId("discordLink2")].filter(Boolean);
+    discordLinks.forEach(a => a.href = SIN_CONFIG.discord);
+
+    const workLinks = [byId("workshopLink"), byId("btnWorkshop")].filter(Boolean);
+    workLinks.forEach(a => a.href = SIN_CONFIG.workshop);
+
+    // Map image
+    const mapImg = byId("mapImage");
+    if (mapImg) mapImg.src = SIN_CONFIG.mapImage;
+
+    // Server IP copy chips
+    setText("serverIP1", SIN_CONFIG.serverIP);
+    byId("btnCopyIP").addEventListener("click", () => copyIP(SIN_CONFIG.serverIP));
+
+    // Get Started button scrolls down
+    byId("btnGetStarted").addEventListener("click", () => {
+      document.querySelector('#start').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Trader table
+    const tbody = document.querySelector('#traderTable tbody');
+    if (tbody && Array.isArray(SIN_CONFIG.traders)) {
+      SIN_CONFIG.traders.forEach(t => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${escapeHTML(t.bunker)}</td><td>${escapeHTML(t.buys)}</td><td>${escapeHTML(t.prices)}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Footer year
+    setText("year", new Date().getFullYear());
+
+    // Helpers
+    function copyIP(ip) {
+      navigator.clipboard.writeText(ip).then(() => {
+        toast(`Copied: ${ip}`);
+      }).catch(() => {
+        prompt("Copy the server IP:", ip);
+      });
+    }
+
+    function formatWipe(x) {
+      if (!x) return "—";
+      const d = new Date(x);
+      return isNaN(d) ? x : d.toLocaleDateString();
+    }
+
+    function toast(msg) {
+      const t = document.createElement('div');
+      t.textContent = msg;
+      t.style.position = 'fixed';
+      t.style.bottom = '20px';
+      t.style.left = '50%';
+      t.style.transform = 'translateX(-50%)';
+      t.style.background = 'rgba(15,21,24,0.98)';
+      t.style.border = '1px solid var(--line)';
+      t.style.color = 'var(--fg)';
+      t.style.padding = '10px 14px';
+      t.style.borderRadius = '10px';
+      t.style.boxShadow = 'var(--shadow)';
+      t.style.zIndex = '9999';
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 2000);
+    }
+
+    function escapeHTML(s) {
+      return String(s).replace(/[&<>"]+/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    }
+
+    // =============================================================
+    // 🔌 OPTIONAL: Live Status (placeholder for future integration)
+    // -------------------------------------------------------------
+    // To add BattleMetrics or CFTools, replace setText('statPlayers', ...)
+    // with your fetch logic. Keep CORS in mind if hosting statically.
+    // =============================================================
+  </script>
+</body>
+</html>
