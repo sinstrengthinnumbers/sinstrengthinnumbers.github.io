@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SIN — Strength in Numbers</title>
-  <meta name="description" content="SIN (Strength in Numbers) — a DayZ community focused on surviving alone and thriving together. Join the fight." />
+  <title>SIN</title>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <meta name="description" content="SIN (Strength in Numbers) — a DayZ community focused on exploration, and challenging yourself." />
   <style>
     /* =============================================================
        🎯 QUICK EDITS (colors, logo, accent)
@@ -16,7 +17,7 @@
       --panel: #0f1518;         /* card/section background */
       --fg: #e6f3ea;            /* main text */
       --muted: #a2b4aa;         /* secondary text */
-      --accent: #58ff9b;        /* toxic green accent */
+      --accent: #ff5858;        /* toxic green accent */
       --accent-2: #ffc857;      /* amber for warnings */
       --alert: #ff6b6b;         /* red for EVR/alerts */
       --line: #1b2428;          /* subtle borders */
@@ -49,19 +50,19 @@
     }
     .nav .inner { display: flex; align-items: center; justify-content: space-between; max-width: var(--maxw); margin: 0 auto; padding: 14px 24px; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.7px; }
-    .brand .logo { width: 32px; height: 32px; border-radius: 8px; background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%), #0b2b1b; border: 1px solid var(--line); }
+    .brand .logo { width: 32px; height: 32px; border-radius: 8px; background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%), #2b0b0b; border: 1px solid var(--line); }
     .nav a { color: var(--fg); opacity: 0.9; }
     .nav ul { display: flex; gap: 16px; align-items: center; margin: 0; padding: 0; list-style: none; }
-    .nav .cta { background: var(--accent); color: #032010; padding: 8px 12px; border-radius: 999px; font-weight: 700; }
+    .nav .cta { background: var(--accent); color: #200303; padding: 8px 12px; border-radius: 999px; font-weight: 700; }
 
     /* Hero */
     .hero {
       position: relative; overflow: hidden; border-radius: 0 0 var(--radius) var(--radius);
       border-bottom: 1px solid var(--line);
       background:
-        radial-gradient(1200px 400px at 50% 0%, rgba(88,255,155,0.08), transparent 60%),
-        radial-gradient(800px 800px at 100% 0%, rgba(88,255,155,0.06), transparent 55%),
-        #071012;
+        radial-gradient(1200px 400px at 50% 0%, rgba(255, 88, 88, 0.08), transparent 60%),
+        radial-gradient(800px 800px at 100% 0%, rgba(255, 88, 88, 0.06), transparent 55%),
+        #120707;
     }
     .heroScan {
       position: absolute; inset: 0; pointer-events: none;
@@ -81,11 +82,11 @@
     .heroActions { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn { border: 1px solid var(--line); background: var(--panel); color: var(--fg); padding: 10px 14px; border-radius: 10px; font-weight: 600; cursor: pointer; }
     .btn:hover { border-color: var(--accent); }
-    .btn.primary { background: var(--accent); color: #062012; }
+    .btn.primary { background: var(--accent); color: #200606; }
 
     /* Status */
     .statusBar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
-    .stat { background: #0b1416; border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+    .stat { background: #160b0b; border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; font-size: 14px; }
     .stat strong { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
     /* Grid helpers */
@@ -95,18 +96,18 @@
     /* Tables */
     table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 12px; border: 1px solid var(--line); }
     th, td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; }
-    th { background: #0d1518; color: var(--muted); font-weight: 700; letter-spacing: 0.3px; }
+    th { background: #180d0d; color: var(--muted); font-weight: 700; letter-spacing: 0.3px; }
 
     /* Tags */
     .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line); color: var(--muted); }
     .tag.fix { color: #ff9db0; border-color: #3a1c24; background: #201016; }
-    .tag.content { color: #b8ffda; border-color: #193225; background: #0f1915; }
+    .tag.content { color: #b8ffc4; border-color: #193224; background: #0f1913; }
     .tag.balance { color: #ffe4a3; border-color: #3b2b0e; background: #201b0b; }
     .tag.event { color: #ffdede; border-color: #3b1b1b; background: #1e1212; }
     .tag.qol { color: #cfe3ff; border-color: #132034; background: #0c141f; }
 
     /* Callouts */
-    .callout { border: 1px solid var(--line); background: #0b1414; border-left: 4px solid var(--accent); padding: 14px; border-radius: 10px; }
+    .callout { border: 1px solid var(--line); background: #140b0b; border-left: 4px solid var(--accent); padding: 14px; border-radius: 10px; }
     .callout.warn { border-left-color: var(--accent-2); }
     .callout.alert { border-left-color: var(--alert); }
 
@@ -114,7 +115,7 @@
     footer { padding: 40px 24px; border-top: 1px solid var(--line); color: var(--muted); text-align: center; }
 
     /* Small helper styles */
-    .kbd { display: inline-block; padding: 2px 6px; border: 1px solid var(--accent); border-radius: 6px; font-weight: 700; color: var(--accent); background: rgba(88,255,155,0.1); }
+    .kbd { display: inline-block; padding: 2px 6px; border: 1px solid var(--accent); border-radius: 6px; font-weight: 700; color: var(--accent); background: rgba(255, 88, 88, 0.1); }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
 
     /* Mobile tweaks */
@@ -143,25 +144,32 @@
       /* EDIT: Server display name */
       serverName: "SIN | Strength in Numbers",
       /* EDIT: Map name */
-      mapName: "Namalsk",
+      mapName: "Deer Isle",
       /* EDIT: Server IP:PORT */
-      serverIP: "000.000.000.000:2302",
+      serverIP: "37.187.137.43:2302",
       /* EDIT: Discord invite */
-      discord: "https://discord.gg/your-invite",
+      discord: "https://discord.gg/strengthinnumbers",
       /* EDIT: Steam Workshop collection */
       workshop: "https://steamcommunity.com/sharedfiles/filedetails/?id=0000000000",
       /* EDIT: Map image (replace with your hosted image or /assets/map.jpg) */
-      mapImage: "https://placehold.co/1400x900/0f1518/ffffff?text=Replace+with+your+Map+Image",
+      mapImage: "./deermap.webp",
       /* EDIT: Last wipe date */
-      lastWipe: "2025-06-30",
+      lastWipe: "2025-06-04",
       /* EDIT: Manual announcement/ticker */
-      announcement: "EVR activity elevated. Seek shelter during auroras.",
+      announcement: "Update 1.29 Cinematic Trailer has been released.",
       /* EDIT: Traders & Economy snapshot */
       traders: [
-        { bunker: "KMUC", buys: "Guns", prices: "1–3 Platinum Gold nuggets" },
-        { bunker: "Devil's Eye", buys: "Construction Materials", prices: "1–2 nuggets" },
-        { bunker: "Red Bunker", buys: "Misc. Utilities", prices: "Varies" },
-        { bunker: "Blue Bunker", buys: "Medical / Filters / Charcoal", prices: "Filters x1→5 PG, Charcoal x1→1 PG" },
+        { bunker: "Portland Station", buys: "Guns/Gear/Consumables/Vehicles", prices: "Community Trader" },
+        { bunker: "Groot's Hill", buys: "Guns/Gear/Consumables/Vehicles", prices: "Community Trader" },
+        { bunker: "Waldo", buys: "Guns/Gear/Consumables/Vehicles", prices: "Community Trader" },
+        { bunker: "Portland Boat Trader", buys: "Boats", prices: "Community Trader" },
+        { bunker: "Flea Market", buys: "Bits and Bobs", prices: "Community P2P Trader" },
+        { bunker: "Black Market", buys: "Guns/Gear/Consumables/Vehicles", prices: "Hidden - More than one?" },
+        { bunker: "Trophy", buys: "Bits and Bobs", prices: "Hidden" },
+        { bunker: "Lux", buys: "Vehicles", prices: "Hidden" },
+        { bunker: "Offroad", buys: "Vehicles", prices: "Hidden" },
+        { bunker: "Cannibal", buys: "Mutant Parts", prices: "Hidden" },
+        { bunker: "Drug", buys: "Drugs", prices: "Hidden" },
       ],
     };
   </script>
@@ -170,8 +178,8 @@
   <nav class="nav">
     <div class="inner">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <a href="#home" class="brand-name">SIN: Strength in Numbers</a>
+        <div><img src="favicon-32x32.png"></div>
+        <a href="#home" class="brand-name">Strength In Numbers</a>
       </div>
       <ul class="mono">
         <!-- EDIT: Add/remove nav items as needed -->
@@ -183,7 +191,7 @@
         <li><a href="#lore">Lore</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a class="cta" id="discordLink" href="#">Join Discord</a></li>
+        <li><a class="cta" id="discordLink" href="discord.gg/strengthinnumbers">Join Discord</a></li>
       </ul>
     </div>
   </nav>
@@ -192,32 +200,36 @@
   <header class="hero" id="home" role="banner">
     <div class="heroScan"></div>
     <div class="wrap">
-      <div class="eyebrow mono">Survive alone. Thrive together.</div>
-      <h1 class="title" id="siteTitle">SIN — Strength in Numbers</h1>
-      <p class="subtitle" id="siteSubtitle">Two worlds, one community. Main ↔ HC via teleporter—bring your nerve and your friends.</p>
+      <!-- <h1 class="title" id="siteTitle">SIN — Strength in Numbers</h1> -->
+        <!-- <div style="text-align: center"><img src="SIN.png"style="width:300px;height:300px;"></div> -->
+        <div style ="text-align: center" class="eyebrow mono"><h1>Survive alone. Thrive together.</h1></div>
+        <center><p class="subtitle" id="siteSubtitle">Two worlds, one community.</p></center>
 
-      <div class="statusBar">
-        <div class="stat"><strong>Server</strong><span id="statName">—</span></div>
-        <div class="stat"><strong>Map</strong><span id="statMap">—</span></div>
-        <div class="stat"><strong>Players</strong><span id="statPlayers">—</span></div>
-        <div class="stat"><strong>Last Wipe</strong><span id="statWipe">—</span></div>
+
+        <div class="statusBar">
+          <div class="stat"><strong>Server</strong><span id="statName">—</span></div>
+          <div class="stat"><strong>Map</strong><span id="statMap">—</span></div>
+          <div class="stat"><strong>Players</strong><span id="statPlayers">—</span></div>
+          <div class="stat"><strong>Last Wipe</strong><span id="statWipe">—</span></div>
+        </div>
+
+        <div class="heroActions">
+          <button class="btn primary" id="btnGetStarted">Get Set Up</button>
+          <button class="btn" id="btnCopyIP">Copy Server IP</button>
+          <a class="btn" id="btnWorkshop" href="#" target="_blank" rel="noopener">Workshop Collection</a>
+        </div>
+
+        <div class="callout warn">
+          <strong>Announcement:</strong> <span id="announcement">—</span>
+        </div>
+        <div><video width="1080" height="720" controls><source src="129%20Cinematic.mp4"></video></div>
       </div>
 
-      <div class="heroActions">
-        <button class="btn primary" id="btnGetStarted">Get Set Up</button>
-        <button class="btn" id="btnCopyIP">Copy Server IP</button>
-        <a class="btn" id="btnWorkshop" href="#" target="_blank" rel="noopener">Workshop Collection</a>
-      </div>
+    </header>
 
-      <div class="callout warn">
-        <strong>Announcement:</strong> <span id="announcement">—</span>
-      </div>
-    </div>
-  </header>
+    <main class="container">
 
-  <main class="container">
-
-    <!-- ===================== START HERE ======================= -->
+      <!-- ===================== START HERE ======================= -->
     <section id="start" class="section card">
       <h2>Start Here — 5‑Minute Setup</h2>
       <ol>
@@ -225,10 +237,13 @@
         <li>Launch DayZ → <span class="kbd">Mods</span> → ensure load order matches the collection.</li>
         <li>Direct Connect: <span class="kbd mono" id="serverIP1">—</span> (Right‑click → Favorite)</li>
         <li>If you see <em>mod mismatch</em>, hit <strong>Refresh Mods</strong>, then <strong>Retry</strong>.</li>
-        <li>Join our <a id="discordLink2" href="#" target="_blank" rel="noopener">Discord</a> for support and event pings.</li>
+        <li>Join our <a id="discordLink2" href="discord.gg/strengthinnumbers" target="_blank" rel="noopener">Discord</a> for support and event pings.</li>
       </ol>
       <div class="callout">
-        <strong>Tip:</strong> Travel with a squad; death penalties still apply. Strength in numbers.
+        <strong>Tip:</strong> Ask questions. Players and Admins at SIN are some of the most helpful people you will encounter.
+      </div>
+      <div class="callout">
+        <strong>Tip:</strong> Keep Secrets. We want everyone to experience the joy of finally finding a secret for themselves.
       </div>
     </section>
 
@@ -264,17 +279,17 @@
     <section id="traders" class="section card">
       <h2>Traders & Economy</h2>
       <p>
-        <strong>Platinum Gold</strong> is the backbone of SIN’s HC ↔ Main loop. Earn it by clearing content and achievements on HC,
-        convert to coins at the Teleporter Hub on Main, then spend on exclusive utilities, skins, and high‑slot containers.
+        <strong>Platinum</strong> is the backbone of SIN’s economy. Earn it by clearing content and achievements,
+        convert to coins on your crafting table, then spend on exclusive utilities, skins, and high‑slot containers.
       </p>
       <div class="callout">
-        <strong>Travel Smart:</strong> Currency is valuable. Move with a squad.
+        <strong>Travel Smart:</strong> Currency is valuable. The world is unforgiving.
       </div>
       <!-- EDIT: Update the table rows via SIN_CONFIG.traders in the script OR manually here. -->
       <div style="overflow:auto">
         <table id="traderTable" aria-label="Trader prices">
           <thead>
-            <tr><th>Bunker</th><th>Buys / Sells</th><th>Typical Prices</th></tr>
+            <tr><th>Location</th><th>Buys / Sells</th><th>Type</th></tr>
           </thead>
           <tbody>
             <!-- Populated by JS from SIN_CONFIG.traders -->
@@ -286,29 +301,40 @@
     <!-- ===================== CHANGELOG ======================== -->
     <section id="changelog" class="section card">
       <h2>Changelog</h2>
-      <p class="muted">Keep the mystique. Pair cryptic lines with clear dates.</p>
+      <p class="muted">Recent server updates</p>
 
       <!-- EDIT: Duplicate a .log entry block below for each update -->
       <div class="log">
-        <div class="tag content">[Content]</div>
-        <div class="mono" aria-label="date">2025‑08‑01</div>
-        <p>Echoes in the snow now answer back.</p>
+        <div class="tag fix">[Bug Fix]</div>
+        <div class="mono" aria-label="date">2025‑08‑16</div>
+        <p><strong>CoreServerPack</strong></p>
+        <p>updated Car Fetch (thanks to Nin)</p>
+        <p>Added Barrel unfuckery (also Nin)</p>
       </div>
       <hr style="border:0;border-top:1px solid var(--line);" />
       <div class="log">
-        <div class="tag fix">[Fix]</div>
-        <div class="mono" aria-label="date">2025‑07‑26</div>
-        <p>The rigs learned to argue with gravity.</p>
+         <div class="tag balance">[Balance]</div>
+         <div class="mono" aria-label="date">2025‑08‑13</div>
+         <p><strong>Server</strong></p>
+         <p>Lowered slots to 40 players until Wipe (bit of a social experiment)</p>
       </div>
       <hr style="border:0;border-top:1px solid var(--line);" />
       <div class="log">
-        <div class="tag balance">[Balance]</div>
-        <div class="mono" aria-label="date">2025‑07‑18</div>
-        <p>Some pockets got heavier; some claws got duller.</p>
+          <div class="tag fix">[Bug Fix]</div>
+          <div class="mono" aria-label="date">2025‑08‑11</div>
+          <p><strong>Server</strong></p>
+          <p>Some creatures have learned to keep their sea legs.</p>
       </div>
-
+      <hr style="border:0;border-top:1px solid var(--line);" />
+      <div class="log">
+          <div class="tag content">[Content]</div>
+          <div class="mono" aria-label="date">2025‑08‑06</div>
+          <p><strong>Crafting Table</strong></p>
+          <p>Added 150 slot upgrades for DEF PVE, Red Tech, and Green Hex Tac shirts, and Tac Pants.</p>
+      </div>
+      <hr style="border:0;border-top:1px solid var(--line);" />
       <div class="callout" style="margin-top:18px">
-        <strong>Hotfixes:</strong> Minor server restarts, config clean‑ups, and load order notes.
+        <strong>Hotfixes:</strong> Thank you for your patience as we make this server the best it can be!
       </div>
     </section>
 
@@ -317,8 +343,8 @@
       <h2>Lore</h2>
       <!-- EDIT: Replace this short lore block with your world‑building -->
       <p>
-        The Teleporter stitched two dead worlds together. On one side, frost and auroras; on the other, factories that breathe toxins.
-        Between them: us. We didn’t choose the name SIN—survival did. Alone, you’re a rumor. Together, you’re a convoy.
+        The Teleporter stitched two dead worlds together. On one side, a virus, and the living dead; on the other, toxins that brought to life something much worse.
+        Between them: us.
       </p>
       <p>
         STAG mutants roam where the air tastes like pennies. Lights flicker before EVR storms. When the sirens start,
@@ -332,12 +358,12 @@
       <!-- EDIT: Replace with your event calendar or manual list -->
       <div class="grid cols-2">
         <div class="callout">
-          <strong>Convoy Ambush</strong><br />
-          Fridays @ 20:00 — Secure the intel; expect mutants.
+          <strong>Flea Market</strong><br />
+          Sundays@ 6:00 GMT — Sell your extra loot and help your neighbor.
         </div>
         <div class="callout">
-          <strong>Bunker Breach</strong><br />
-          Bi‑weekly — Marshals ping in Discord an hour prior.
+          <strong>Boxing</strong><br />
+          Bi‑monthly — Admins ping in Discord an hour prior.
         </div>
       </div>
     </section>
@@ -445,7 +471,7 @@
       t.style.bottom = '20px';
       t.style.left = '50%';
       t.style.transform = 'translateX(-50%)';
-      t.style.background = 'rgba(15,21,24,0.98)';
+      t.style.background = 'rgba(24,15,15,0.98)';
       t.style.border = '1px solid var(--line)';
       t.style.color = 'var(--fg)';
       t.style.padding = '10px 14px';
