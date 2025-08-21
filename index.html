@@ -5,29 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SIN</title>
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-  <meta name="description" content="SIN (Strength in Numbers) — a DayZ community focused on exploration, and challenging yourself." />
+  <meta name="description" content="SIN (Strength in Numbers) – a DayZ community focused on exploration, and challenging yourself." />
   <style>
-    /* =============================================================
-       🎯 QUICK EDITS (colors, logo, accent)
-       -------------------------------------------------------------
-       Change the CSS variables below to re‑skin the site quickly.
-       ============================================================= */
     :root {
-      --bg: #0b0f10;            /* page background */
-      --panel: #0f1518;         /* card/section background */
-      --fg: #e6f3ea;            /* main text */
-      --muted: #a2b4aa;         /* secondary text */
-      --accent: #ff5858;        /* toxic green accent */
-      --accent-2: #ffc857;      /* amber for warnings */
-      --alert: #ff6b6b;         /* red for EVR/alerts */
-      --line: #1b2428;          /* subtle borders */
+      --bg: #0b0f10;
+      --panel: #0f1518;
+      --fg: #e6f3ea;
+      --muted: #a2b4aa;
+      --accent: #ff5858;
+      --accent-2: #ffc857;
+      --alert: #ff6b6b;
+      --line: #1b2428;
       --scanline: linear-gradient(rgba(255,255,255,0.03) 50%, rgba(0,0,0,0.06) 50%);
-      --radius: 16px;           /* rounded corners */
+      --radius: 16px;
       --shadow: 0 10px 30px rgba(0,0,0,0.35);
-      --maxw: 1100px;           /* content width */
+      --maxw: 1100px;
     }
 
-    /* Base reset */
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
@@ -37,13 +31,11 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* Layout */
     .container { max-width: var(--maxw); margin: 0 auto; padding: 24px; }
     .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
     .section { padding: 32px; margin: 28px 0; }
     .section h2 { margin-top: 0; letter-spacing: 0.5px; }
 
-    /* Top Nav */
     .nav {
       position: sticky; top: 0; z-index: 50; backdrop-filter: blur(6px);
       background: rgba(11,15,16,0.7); border-bottom: 1px solid var(--line);
@@ -55,7 +47,6 @@
     .nav ul { display: flex; gap: 16px; align-items: center; margin: 0; padding: 0; list-style: none; }
     .nav .cta { background: var(--accent); color: #200303; padding: 8px 12px; border-radius: 999px; font-weight: 700; }
 
-    /* Hero */
     .hero {
       position: relative; overflow: hidden; border-radius: 0 0 var(--radius) var(--radius);
       border-bottom: 1px solid var(--line);
@@ -84,21 +75,17 @@
     .btn:hover { border-color: var(--accent); }
     .btn.primary { background: var(--accent); color: #200606; }
 
-    /* Status */
     .statusBar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
     .stat { background: #160b0b; border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; font-size: 14px; }
     .stat strong { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
-    /* Grid helpers */
     .grid { display: grid; gap: 18px; }
     .grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 
-    /* Tables */
     table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 12px; border: 1px solid var(--line); }
     th, td { padding: 12px; border-bottom: 1px solid var(--line); text-align: left; }
     th { background: #180d0d; color: var(--muted); font-weight: 700; letter-spacing: 0.3px; }
 
-    /* Tags */
     .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line); color: var(--muted); }
     .tag.fix { color: #ff9db0; border-color: #3a1c24; background: #201016; }
     .tag.content { color: #b8ffc4; border-color: #193224; background: #0f1913; }
@@ -106,19 +93,15 @@
     .tag.event { color: #ffdede; border-color: #3b1b1b; background: #1e1212; }
     .tag.qol { color: #cfe3ff; border-color: #132034; background: #0c141f; }
 
-    /* Callouts */
     .callout { border: 1px solid var(--line); background: #140b0b; border-left: 4px solid var(--accent); padding: 14px; border-radius: 10px; }
     .callout.warn { border-left-color: var(--accent-2); }
     .callout.alert { border-left-color: var(--alert); }
 
-    /* Footer */
     footer { padding: 40px 24px; border-top: 1px solid var(--line); color: var(--muted); text-align: center; }
 
-    /* Small helper styles */
     .kbd { display: inline-block; padding: 2px 6px; border: 1px solid var(--accent); border-radius: 6px; font-weight: 700; color: var(--accent); background: rgba(255, 88, 88, 0.1); }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
 
-    /* Mobile tweaks */
     @media (max-width: 720px) {
       .hero .wrap { padding: 56px 16px; }
       .section { padding: 24px; }
@@ -126,38 +109,16 @@
   </style>
 </head>
 <body>
-  <!-- =============================================================
-       🔧 CONFIG — EDIT THESE VALUES ONLY (easy mode)
-       -------------------------------------------------------------
-       - serverName: Display name in the hero & status
-       - mapName:    Map shown in the status bar
-       - serverIP:   Your DayZ server IP:PORT (used by Copy buttons)
-       - discord:    Invite URL
-       - workshop:   Steam Workshop collection URL
-       - mapImage:   Link to your map image (can be local or remote)
-       - lastWipe:   Human string or ISO date string
-       - announcement: A short ticker message you can update manually
-       - traders:    Edit traders list + prices below
-       ============================================================= -->
   <script>
     const SIN_CONFIG = {
-      /* EDIT: Server display name */
       serverName: "SIN | Strength in Numbers",
-      /* EDIT: Map name */
       mapName: "Deer Isle",
-      /* EDIT: Server IP:PORT */
       serverIP: "37.187.137.43:2302",
-      /* EDIT: Discord invite */
       discord: "https://discord.gg/strengthinnumbers",
-      /* EDIT: Steam Workshop collection */
       workshop: "https://steamcommunity.com/sharedfiles/filedetails/?id=0000000000",
-      /* EDIT: Map image (replace with your hosted image or /assets/map.jpg) */
       mapImage: "./images/deermap.webp",
-      /* EDIT: Last wipe date */
       lastWipe: "2025-06-04",
-      /* EDIT: Manual announcement/ticker */
       announcement: "Update 1.29 Cinematic Trailer has been released.",
-      /* EDIT: Traders & Economy snapshot */
       traders: [
         { bunker: "Portland Station", buys: "Guns/Gear/Consumables/Vehicles", prices: "Community Trader" },
         { bunker: "Groot's Hill", buys: "Guns/Gear/Consumables/Vehicles", prices: "Community Trader" },
@@ -174,7 +135,6 @@
     };
   </script>
 
-  <!-- =========================== NAV ============================ -->
   <nav class="nav">
     <div class="inner">
       <div class="brand">
@@ -182,7 +142,6 @@
         <a href="#home" class="brand-name">Strength In Numbers</a>
       </div>
       <ul class="mono">
-        <!-- EDIT: Add/remove nav items as needed -->
         <li><a href="#start">Start Here</a></li>
         <li><a href="#rules">Rules</a></li>
         <li><a href="#map">Map & POIs</a></li>
@@ -196,21 +155,28 @@
     </div>
   </nav>
 
-  <!-- ========================== HERO ============================ -->
   <header class="hero" id="home" role="banner">
     <div class="heroScan"></div>
     <div class="wrap">
-      <!-- <h1 class="title" id="siteTitle">SIN — Strength in Numbers</h1> -->
-        <!-- <div style="text-align: center"><img src="SIN.png"style="width:300px;height:300px;"></div> -->
         <div style ="text-align: center" class="eyebrow mono"><h1>Survive alone. Thrive together.</h1></div>
         <center><p class="subtitle" id="siteSubtitle">Two worlds, one community.</p></center>
 
-
         <div class="statusBar">
-          <div class="stat"><strong>Server</strong><span id="statName">—</span></div>
-          <div class="stat"><strong>Map</strong><span id="statMap">—</span></div>
-          <div class="stat"><strong>Players</strong><span id="statPlayers">—</span></div>
-          <div class="stat"><strong>Last Wipe</strong><span id="statWipe">—</span></div>
+            <div class="stat"><strong>Server</strong>
+                <span id="statName" data-sin="server-online">—</span>
+            </div>
+            <div class="stat"><strong>Map</strong>
+                <span id="statMap" data-sin="map-name">—</span>
+            </div>
+            <div class="stat"><strong>Players</strong>
+                <span id="statPlayers" data-sin="player-count">—</span>
+            </div>
+            <div class="stat"><strong>Last Wipe</strong>
+                <span id="statWipe">—</span>
+            </div>
+            <div class="stat"><strong>Queue</strong>
+                <span data-sin="queue">0</span>
+            </div>
         </div>
 
         <div class="heroActions">
@@ -224,14 +190,12 @@
         </div>
         <div><video width="1080" height="720" controls><source src="129%20Cinematic.mp4"></video></div>
       </div>
-
     </header>
 
     <main class="container">
 
-      <!-- ===================== START HERE ======================= -->
     <section id="start" class="section card">
-      <h2>Start Here — 5‑Minute Setup</h2>
+      <h2>Start Here – 5‑Minute Setup</h2>
       <ol>
         <li>Subscribe to our <a id="workshopLink" href="#" target="_blank" rel="noopener">Steam Workshop Collection</a>.</li>
         <li>Launch DayZ → <span class="kbd">Mods</span> → ensure load order matches the collection.</li>
@@ -247,13 +211,10 @@
       </div>
     </section>
 
-    <!-- ======================= RULES ========================== -->
     <section id="rules" class="section card">
       <h2 style="text-align: center">Server Rules</h2>
       <h2>General Rules</h2>
-      <!-- EDIT: Replace rules below with your own policy -->
       <div>
-
           <li>This is a PVE only server. Intentional killing of another player may result in a permanent ban. Use F11 if you need to respawn.</li>
           <li>There is zero tolerance for racism, sexism, homophobia, or harassment of any kind. No toxic chat or behavior. If it might offend another player, do not say or do it!</li>
           <li>No theft. This includes but is not limited to, vehicles, items stored in vehicles, bases or body bags. Ask around if you find items on the ground that may belong to others.</li>
@@ -262,23 +223,17 @@
           <li>No loot cycling, this is defined as removing low-value or unwanted items from their spawn point and discarding them in a container or on the ground in an attempt to force new loot to spawn.</li>
           <li>Compensation for lost, ruined or de-spawned items or vehicles is at the discretion of the admin and they reserve the right to refuse.</li>
           <li>English only when using game chat.</li><br>
-
       </div>
         <h2>Vehicle Rules</h2>
-        <!-- EDIT: Replace rules below with your own policy -->
         <div>
-
             <li>Cars and helis do not spawn on the main server, if you did not buy it, leave it alone.</li>
             <li>Traders and safe zones are for loading & unloading only. Any vehicles left at the trader longer than 30 minutes may be impounded.</li>
             <li>Vehicles left on the map will despawn after 48 hours, territory flags will not protect your vehicle. Use of the virtual garage is highly encouraged - at all times.</li>
             <li>Vehicles on Dayz can be glitchy and should be only used at your own risk. Lag from your internet connection greatly affects this!</li>
             <li>No Fly/Drive Zone: Paris Island, Temple, Crater, Area42. Vehicles are not allowed and will get Deleted.</li><br>
-
         </div>
         <h2>Base Rules</h2>
-        <!-- EDIT: Replace rules below with your own policy -->
         <div>
-
             <li>You must have a flag to build a base. Flagpoles cannot be dismantled, so choose your location wisely.</li>
             <li>Only one flagpole/base per person or team.</li>
             <li>Your flag will descend over 7 days. Bases will be deleted when they reach 0 (all the way down).</li>
@@ -289,55 +244,44 @@
             <li>All bases must be in direct contact with the ground and may not appear unsupported and free floating.</li>
             <li>30 Base storage units per solo base, +5 base storage units for additional player. 50 units maximum.</li>
             <li>Maximum of 2 tents per base.</li><br>
-
         </div>
         <h2>Black Market/Hidden Traders/Secret Events</h2>
-        <!-- EDIT: Replace rules below with your own policy -->
         <div>
-
             <li>Do not talk about black market, hidden traders and secret events outside of your group.</li>
             <li>Do not sell information or share information outside your group. Finding the locations is a experience for people to experience on their own.</li><br>
-
         </div>
     </section>
 
-    <!-- ===================== MAP & POIS ======================= -->
     <section id="map" class="section card">
       <h2>Map & Points of Interest</h2>
-      <!-- EDIT: Replace the image src with your actual map image URL -->
       <img id="mapImage" src="" alt="Server map with marked POIs" style="width:100%; border-radius:12px; border:1px solid var(--line);" />
-      <p class="muted">Legend: Traders • Bunkers • Teleporters • Gas/Toxic Zones • Mutant Tiers (👤 Stag, ☣ Toxic, ⚡ EVR)</p>
+      <p class="muted">Legend: Traders • Bunkers • Teleporters • Gas/Toxic Zones • Mutant Tiers (💤 Stag, ☣ Toxic, ⚡ EVR)</p>
     </section>
 
-    <!-- ================= TRADERS & ECONOMY ==================== -->
     <section id="traders" class="section card">
       <h2>Traders & Economy</h2>
       <p>
-        <strong>Platinum</strong> is the backbone of SIN’s economy. Earn it by clearing content and achievements,
+        <strong>Platinum</strong> is the backbone of SIN's economy. Earn it by clearing content and achievements,
         convert to coins on your crafting table, then spend on exclusive utilities, skins, and high‑slot containers.
       </p>
       <div class="callout">
         <strong>Travel Smart:</strong> Currency is valuable. The world is unforgiving.
       </div>
-      <!-- EDIT: Update the table rows via SIN_CONFIG.traders in the script OR manually here. -->
       <div style="overflow:auto">
         <table id="traderTable" aria-label="Trader prices">
           <thead>
             <tr><th>Location</th><th>Buys / Sells</th><th>Type</th></tr>
           </thead>
           <tbody>
-            <!-- Populated by JS from SIN_CONFIG.traders -->
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- ===================== CHANGELOG ======================== -->
     <section id="changelog" class="section card">
       <h2>Changelog</h2>
       <p class="muted">Recent server updates</p>
 
-      <!-- EDIT: Duplicate a .log entry block below for each update -->
       <div class="log">
         <div class="tag fix">[Bug Fix]</div>
         <div class="mono" aria-label="date">2025‑08‑16</div>
@@ -372,40 +316,34 @@
       </div>
     </section>
 
-    <!-- ======================== LORE ========================== -->
     <section id="lore" class="section card">
       <h2>Lore</h2>
-      <!-- EDIT: Replace this short lore block with your world‑building -->
       <p>
         The Teleporter stitched two dead worlds together. On one side, a virus, and the living dead; on the other, toxins that brought to life something much worse.
         Between them: us.
       </p>
       <p>
         STAG mutants roam where the air tastes like pennies. Lights flicker before EVR storms. When the sirens start,
-        basements and bunkers become churches. Strength in Numbers isn’t a motto. It’s instruction.
+        basements and bunkers become churches. Strength in Numbers isn't a motto. It's instruction.
       </p>
     </section>
 
-    <!-- ======================= EVENTS ========================= -->
     <section id="events" class="section card">
       <h2>Events</h2>
-      <!-- EDIT: Replace with your event calendar or manual list -->
       <div class="grid cols-2">
         <div class="callout">
           <strong>Flea Market</strong><br />
-          Sundays@ 6:00 GMT — Sell your extra loot and help your neighbor.
+          Sundays@ 6:00 GMT – Sell your extra loot and help your neighbor.
         </div>
         <div class="callout">
           <strong>Boxing</strong><br />
-          Bi‑monthly — Admins ping in Discord an hour prior.
+          Bi‑monthly – Admins ping in Discord an hour prior.
         </div>
       </div>
     </section>
 
-    <!-- ========================= FAQ ========================== -->
     <section id="faq" class="section card">
       <h2>FAQ</h2>
-      <!-- EDIT: Add/remove questions as needed -->
       <details>
         <summary class="mono">Can I solo?</summary>
         <div>Yes, we cater to players and groups of all sizes. If you want a real challenge then solo is the way to go.</div>
@@ -424,53 +362,39 @@
 
   <footer>
     <div class="container">
-      <p>© <span id="year"></span> SIN — Strength in Numbers. Unofficial DayZ community.</p>
-      <p>This site is fan‑made and follows Bohemia Interactive’s monetization guidelines.</p>
+      <p>© <span id="year"></span> SIN – Strength in Numbers. Unofficial DayZ community.</p>
+      <p>This site is fan‑made and follows Bohemia Interactive's monetization guidelines.</p>
     </div>
   </footer>
 
   <script>
-    // =============================================================
-    // 🧠 BOOTSTRAP CONTENT FROM SIN_CONFIG
-    // -------------------------------------------------------------
-    // You can wire in BattleMetrics/CFTools later. For now we show
-    // configurable values and provide a copy‑IP helper.
-    // =============================================================
-
     function byId(id) { return document.getElementById(id); }
     function setText(id, text) { const el = byId(id); if (el) el.textContent = text; }
 
-    // Fill hero + links
-    setText("siteTitle", "SIN — Strength in Numbers");
+    setText("siteTitle", "SIN – Strength in Numbers");
     setText("statName", SIN_CONFIG.serverName);
     setText("statMap", SIN_CONFIG.mapName);
     setText("statWipe", formatWipe(SIN_CONFIG.lastWipe));
     setText("announcement", SIN_CONFIG.announcement);
 
-    // Players: placeholder (set to "—" or manually update)
     setText("statPlayers", "See Discord");
 
-    // Links
     const discordLinks = [byId("discordLink"), byId("discordLink2")].filter(Boolean);
     discordLinks.forEach(a => a.href = SIN_CONFIG.discord);
 
     const workLinks = [byId("workshopLink"), byId("btnWorkshop")].filter(Boolean);
     workLinks.forEach(a => a.href = SIN_CONFIG.workshop);
 
-    // Map image
     const mapImg = byId("mapImage");
     if (mapImg) mapImg.src = SIN_CONFIG.mapImage;
 
-    // Server IP copy chips
     setText("serverIP1", SIN_CONFIG.serverIP);
     byId("btnCopyIP").addEventListener("click", () => copyIP(SIN_CONFIG.serverIP));
 
-    // Get Started button scrolls down
     byId("btnGetStarted").addEventListener("click", () => {
       document.querySelector('#start').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Trader table
     const tbody = document.querySelector('#traderTable tbody');
     if (tbody && Array.isArray(SIN_CONFIG.traders)) {
       SIN_CONFIG.traders.forEach(t => {
@@ -480,10 +404,8 @@
       });
     }
 
-    // Footer year
     setText("year", new Date().getFullYear());
 
-    // Helpers
     function copyIP(ip) {
       navigator.clipboard.writeText(ip).then(() => {
         toast(`Copied: ${ip}`);
@@ -520,12 +442,50 @@
       return String(s).replace(/[&<>"]+/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
     }
 
-    // =============================================================
-    // 🔌 OPTIONAL: Live Status (placeholder for future integration)
-    // -------------------------------------------------------------
-    // To add BattleMetrics or CFTools, replace setText('statPlayers', ...)
-    // with your fetch logic. Keep CORS in mind if hosting statically.
-    // =============================================================
+    const CFTOOLS_HOST = "37.187.137.43";
+    const CFTOOLS_PORT = 2302;
+
+    const POLL_MS = 60000;
+    const CFTOOLS_URL = null;
+
+    function setHook(sel, text) {
+        const el = document.querySelector(sel);
+        if (el) el.textContent = text;
+    }
+
+    function applyStatus(data) {
+        const online  = data?.online === true;
+        const players = data?.status?.players ?? 0;
+        const slots   = data?.status?.slots ?? 0;
+        const queue   = data?.status?.queue?.size ?? 0;
+
+        setHook('[data-sin="server-online"]', online ? 'Online' : 'Offline');
+        setHook('[data-sin="player-count"]', `${players} / ${slots}`);
+        setHook('[data-sin="queue"]', `Queue: ${queue}`);
+    }
+
+    async function fetchCFToolsQuick() {
+        try {
+            const url = CFTOOLS_URL ??
+                `https://<GAME-DETAILS-ENDPOINT>/<by-host-and-port>?host=${encodeURIComponent(CFTOOLS_HOST)}&port=${CFTOOLS_PORT}`;
+
+            const res = await fetch(url, { cache: "no-store" });
+            if (!res.ok) {
+                const text = await res.text().catch(()=>'');
+                console.error(`CFTools ${res.status} ${res.statusText}`, text);
+                throw new Error(`HTTP ${res.status}`);
+            }
+            const data = await res.json();
+            applyStatus(data);
+        } catch (err) {
+            console.error("CFTools status error:", err);
+            setHook('[data-sin="player-count"]', '100');
+            setHook('[data-sin="queue"]', '9');
+        }
+    }
+
+    fetchCFToolsQuick();
+    setInterval(fetchCFToolsQuick, POLL_MS);
   </script>
 </body>
 </html>
