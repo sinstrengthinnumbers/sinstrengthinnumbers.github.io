@@ -55,16 +55,8 @@
         radial-gradient(800px 800px at 100% 0%, rgba(255, 88, 88, 0.06), transparent 55%),
         #120707;
     }
-    .heroScan {
-      position: absolute; inset: 0; pointer-events: none;
-      background-image: var(--scanline);
-      background-size: 100% 4px; mix-blend-mode: overlay; opacity: 0.25;
-      animation: flicker 7s infinite linear;
-    }
-    @keyframes flicker {
-      0%, 100% { opacity: 0.22; }
-      50% { opacity: 0.28; }
-    }
+    .heroScan { position: absolute; inset: 0; pointer-events: none; background-image: var(--scanline); background-size: 100% 4px; mix-blend-mode: overlay; opacity: 0.25; animation: flicker 7s infinite linear; }
+    @keyframes flicker { 0%, 100% { opacity: 0.22; } 50% { opacity: 0.28; } }
     .hero .wrap { max-width: var(--maxw); margin: 0 auto; padding: 72px 24px; display: grid; gap: 22px; }
     .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 12px; }
     .title { font-size: clamp(28px, 4vw, 48px); line-height: 1.15; margin: 0; }
@@ -110,6 +102,9 @@
 </head>
 <body>
   <script>
+    /* =============================================================
+       CONFIG
+       ============================================================= */
     const SIN_CONFIG = {
       serverName: "SIN | Strength in Numbers",
       mapName: "Deer Isle",
@@ -138,7 +133,7 @@
   <nav class="nav">
     <div class="inner">
       <div class="brand">
-        <div><img src="./images/favicon-32x32.png"></div>
+        <div><img src="./images/favicon-32x32.png" alt="logo" /></div>
         <a href="#home" class="brand-name">Strength In Numbers</a>
       </div>
       <ul class="mono">
@@ -150,7 +145,7 @@
         <li><a href="#lore">Lore</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a class="cta" id="discordLink" href="discord.gg/strengthinnumbers">Join Discord</a></li>
+        <li><a class="cta" id="discordLink" href="https://discord.gg/strengthinnumbers">Join Discord</a></li>
       </ul>
     </div>
   </nav>
@@ -158,41 +153,42 @@
   <header class="hero" id="home" role="banner">
     <div class="heroScan"></div>
     <div class="wrap">
-        <div style ="text-align: center" class="eyebrow mono"><h1>Survive alone. Thrive together.</h1></div>
-        <center><p class="subtitle" id="siteSubtitle">Two worlds, one community.</p></center>
+      <div style="text-align:center" class="eyebrow mono"><h1>Survive alone. Thrive together.</h1></div>
+      <p class="subtitle" id="siteSubtitle" style="text-align:center">Two worlds, one community.</p>
 
-        <div class="statusBar">
-            <div class="stat"><strong>Server</strong>
-                <span id="statName" data-sin="server-online">—</span>
-            </div>
-            <div class="stat"><strong>Map</strong>
-                <span id="statMap" data-sin="map-name">—</span>
-            </div>
-            <div class="stat"><strong>Players</strong>
-                <span id="statPlayers" data-sin="player-count">—</span>
-            </div>
-            <div class="stat"><strong>Last Wipe</strong>
-                <span id="statWipe">—</span>
-            </div>
-            <div class="stat"><strong>Queue</strong>
-                <span data-sin="queue">0</span>
-            </div>
+      <div class="statusBar">
+        <div class="stat"><strong>Server</strong>
+          <span id="statName" data-sin="server-online">—</span>
         </div>
-
-        <div class="heroActions">
-          <button class="btn primary" id="btnGetStarted">Get Set Up</button>
-          <button class="btn" id="btnCopyIP">Copy Server IP</button>
-          <a class="btn" id="btnWorkshop" href="#" target="_blank" rel="noopener">Workshop Collection</a>
+        <div class="stat"><strong>Map</strong>
+          <span id="statMap" data-sin="map-name">—</span>
         </div>
-
-        <div class="callout warn">
-          <strong>Announcement:</strong> <span id="announcement">—</span>
+        <div class="stat"><strong>Players</strong>
+          <span id="statPlayers" data-sin="player-count">—</span>
         </div>
-        <div><video width="1080" height="720" controls><source src="129%20Cinematic.mp4"></video></div>
+        <div class="stat"><strong>Last Wipe</strong>
+          <span id="statWipe">—</span>
+        </div>
+        <div class="stat"><strong>Queue</strong>
+          <span data-sin="queue">0</span>
+        </div>
       </div>
-    </header>
 
-    <main class="container">
+      <div class="heroActions">
+        <button class="btn primary" id="btnGetStarted">Get Set Up</button>
+        <button class="btn" id="btnCopyIP">Copy Server IP</button>
+        <a class="btn" id="btnWorkshop" href="#" target="_blank" rel="noopener">Workshop Collection</a>
+      </div>
+
+      <div class="callout warn">
+        <strong>Announcement:</strong> <span id="announcement">—</span>
+      </div>
+
+      <div><video width="1080" height="720" controls><source src="129%20Cinematic.mp4"></video></div>
+    </div>
+  </header>
+
+  <main class="container">
 
     <section id="start" class="section card">
       <h2>Start Here – 5‑Minute Setup</h2>
@@ -201,7 +197,7 @@
         <li>Launch DayZ → <span class="kbd">Mods</span> → ensure load order matches the collection.</li>
         <li>Direct Connect: <span class="kbd mono" id="serverIP1">—</span> (Right‑click → Favorite)</li>
         <li>If you see <em>mod mismatch</em>, hit <strong>Refresh Mods</strong>, then <strong>Retry</strong>.</li>
-        <li>Join our <a id="discordLink2" href="discord.gg/strengthinnumbers" target="_blank" rel="noopener">Discord</a> for support and event pings.</li>
+        <li>Join our <a id="discordLink2" href="https://discord.gg/strengthinnumbers" target="_blank" rel="noopener">Discord</a> for support and event pings.</li>
       </ol>
       <div class="callout">
         <strong>Tip:</strong> Ask questions. Players and Admins at SIN are some of the most helpful people you will encounter.
@@ -215,41 +211,41 @@
       <h2 style="text-align: center">Server Rules</h2>
       <h2>General Rules</h2>
       <div>
-          <li>This is a PVE only server. Intentional killing of another player may result in a permanent ban. Use F11 if you need to respawn.</li>
-          <li>There is zero tolerance for racism, sexism, homophobia, or harassment of any kind. No toxic chat or behavior. If it might offend another player, do not say or do it!</li>
-          <li>No theft. This includes but is not limited to, vehicles, items stored in vehicles, bases or body bags. Ask around if you find items on the ground that may belong to others.</li>
-          <li>Respect events. Listen to Marshals/Admins.</li>
-          <li>No glitching, exploiting game bugs, nesting items, duping, hacking or otherwise trying to gain an unfair advantage.</li>
-          <li>No loot cycling, this is defined as removing low-value or unwanted items from their spawn point and discarding them in a container or on the ground in an attempt to force new loot to spawn.</li>
-          <li>Compensation for lost, ruined or de-spawned items or vehicles is at the discretion of the admin and they reserve the right to refuse.</li>
-          <li>English only when using game chat.</li><br>
+        <li>This is a PVE only server. Intentional killing of another player may result in a permanent ban. Use F11 if you need to respawn.</li>
+        <li>There is zero tolerance for racism, sexism, homophobia, or harassment of any kind. No toxic chat or behavior. If it might offend another player, do not say or do it!</li>
+        <li>No theft. This includes but is not limited to, vehicles, items stored in vehicles, bases or body bags. Ask around if you find items on the ground that may belong to others.</li>
+        <li>Respect events. Listen to Marshals/Admins.</li>
+        <li>No glitching, exploiting game bugs, nesting items, duping, hacking or otherwise trying to gain an unfair advantage.</li>
+        <li>No loot cycling, this is defined as removing low-value or unwanted items from their spawn point and discarding them in a container or on the ground in an attempt to force new loot to spawn.</li>
+        <li>Compensation for lost, ruined or de-spawned items or vehicles is at the discretion of the admin and they reserve the right to refuse.</li>
+        <li>English only when using game chat.</li><br>
       </div>
-        <h2>Vehicle Rules</h2>
-        <div>
-            <li>Cars and helis do not spawn on the main server, if you did not buy it, leave it alone.</li>
-            <li>Traders and safe zones are for loading & unloading only. Any vehicles left at the trader longer than 30 minutes may be impounded.</li>
-            <li>Vehicles left on the map will despawn after 48 hours, territory flags will not protect your vehicle. Use of the virtual garage is highly encouraged - at all times.</li>
-            <li>Vehicles on Dayz can be glitchy and should be only used at your own risk. Lag from your internet connection greatly affects this!</li>
-            <li>No Fly/Drive Zone: Paris Island, Temple, Crater, Area42. Vehicles are not allowed and will get Deleted.</li><br>
-        </div>
-        <h2>Base Rules</h2>
-        <div>
-            <li>You must have a flag to build a base. Flagpoles cannot be dismantled, so choose your location wisely.</li>
-            <li>Only one flagpole/base per person or team.</li>
-            <li>Your flag will descend over 7 days. Bases will be deleted when they reach 0 (all the way down).</li>
-            <li>Only one vanilla building may be blocked or secured.</li>
-            <li>Panel count is limited to 30 panels per solo base. +10 panels for additional player. 50 panel maximum. Each foundation, floor, fence or wall count as 1 panel. Cabins count as 20 panels.</li>
-            <li>Do not build on or in roadways, hospitals or clinics , gas stations, fire stations, police stations, schools, wood spawns, cement mixers, water wells, or Military Areas./li>
-            <li>Building height is not to exceed 3 panels in height.</li>
-            <li>All bases must be in direct contact with the ground and may not appear unsupported and free floating.</li>
-            <li>30 Base storage units per solo base, +5 base storage units for additional player. 50 units maximum.</li>
-            <li>Maximum of 2 tents per base.</li><br>
-        </div>
-        <h2>Black Market/Hidden Traders/Secret Events</h2>
-        <div>
-            <li>Do not talk about black market, hidden traders and secret events outside of your group.</li>
-            <li>Do not sell information or share information outside your group. Finding the locations is a experience for people to experience on their own.</li><br>
-        </div>
+      <h2>Vehicle Rules</h2>
+      <div>
+        <li>Cars and helis do not spawn on the main server, if you did not buy it, leave it alone.</li>
+        <li>Traders and safe zones are for loading & unloading only. Any vehicles left at the trader longer than 30 minutes may be impounded.</li>
+        <li>Vehicles left on the map will despawn after 48 hours, territory flags will not protect your vehicle. Use of the virtual garage is highly encouraged - at all times.</li>
+        <li>Vehicles on Dayz can be glitchy and should be only used at your own risk. Lag from your internet connection greatly affects this!</li>
+        <li>No Fly/Drive Zone: Paris Island, Temple, Crater, Area42. Vehicles are not allowed and will get Deleted.</li><br>
+      </div>
+      <h2>Base Rules</h2>
+      <div>
+        <li>You must have a flag to build a base. Flagpoles cannot be dismantled, so choose your location wisely.</li>
+        <li>Only one flagpole/base per person or team.</li>
+        <li>Your flag will descend over 7 days. Bases will be deleted when they reach 0 (all the way down).</li>
+        <li>Only one vanilla building may be blocked or secured.</li>
+        <li>Panel count is limited to 30 panels per solo base. +10 panels for additional player. 50 panel maximum. Each foundation, floor, fence or wall count as 1 panel. Cabins count as 20 panels.</li>
+        <li>Do not build on or in roadways, hospitals or clinics , gas stations, fire stations, police stations, schools, wood spawns, cement mixers, water wells, or Military Areas./li>
+        <li>Building height is not to exceed 3 panels in height.</li>
+        <li>All bases must be in direct contact with the ground and may not appear unsupported and free floating.</li>
+        <li>30 Base storage units per solo base, +5 base storage units for additional player. 50 units maximum.</li>
+        <li>Maximum of 2 tents per base.</li><br>
+      </div>
+      <h2>Black Market/Hidden Traders/Secret Events</h2>
+      <div>
+        <li>Do not talk about black market, hidden traders and secret events outside of your group.</li>
+        <li>Do not sell information or share information outside your group. Finding the locations is a experience for people to experience on their own.</li><br>
+      </div>
     </section>
 
     <section id="map" class="section card">
@@ -272,8 +268,7 @@
           <thead>
             <tr><th>Location</th><th>Buys / Sells</th><th>Type</th></tr>
           </thead>
-          <tbody>
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
     </section>
@@ -291,24 +286,24 @@
       </div>
       <hr style="border:0;border-top:1px solid var(--line);" />
       <div class="log">
-         <div class="tag balance">[Balance]</div>
-         <div class="mono" aria-label="date">2025‑08‑13</div>
-         <p><strong>Server</strong></p>
-         <p>Lowered slots to 40 players until Wipe (bit of a social experiment)</p>
+        <div class="tag balance">[Balance]</div>
+        <div class="mono" aria-label="date">2025‑08‑13</div>
+        <p><strong>Server</strong></p>
+        <p>Lowered slots to 40 players until Wipe (bit of a social experiment)</p>
       </div>
       <hr style="border:0;border-top:1px solid var(--line);" />
       <div class="log">
-          <div class="tag fix">[Bug Fix]</div>
-          <div class="mono" aria-label="date">2025‑08‑11</div>
-          <p><strong>Server</strong></p>
-          <p>Some creatures have learned to keep their sea legs.</p>
+        <div class="tag fix">[Bug Fix]</div>
+        <div class="mono" aria-label="date">2025‑08‑11</div>
+        <p><strong>Server</strong></p>
+        <p>Some creatures have learned to keep their sea legs.</p>
       </div>
       <hr style="border:0;border-top:1px solid var(--line);" />
       <div class="log">
-          <div class="tag content">[Content]</div>
-          <div class="mono" aria-label="date">2025‑08‑06</div>
-          <p><strong>Crafting Table</strong></p>
-          <p>Added 150 slot upgrades for DEF PVE, Red Tech, and Green Hex Tac shirts, and Tac Pants.</p>
+        <div class="tag content">[Content]</div>
+        <div class="mono" aria-label="date">2025‑08‑06</div>
+        <p><strong>Crafting Table</strong></p>
+        <p>Added 150 slot upgrades for DEF PVE, Red Tech, and Green Hex Tac shirts, and Tac Pants.</p>
       </div>
       <hr style="border:0;border-top:1px solid var(--line);" />
       <div class="callout" style="margin-top:18px">
@@ -368,33 +363,42 @@
   </footer>
 
   <script>
-    function byId(id) { return document.getElementById(id); }
-    function setText(id, text) { const el = byId(id); if (el) el.textContent = text; }
+    // =============================================================
+    // Helpers — avoid hoisting collisions by using const functions
+    // =============================================================
+    const byId = (id) => document.getElementById(id);
+    const setTextById = (id, text) => { const el = byId(id); if (el) el.textContent = text; };
+    const setTextSel = (sel, text) => { const el = document.querySelector(sel); if (el) el.textContent = text; };
 
-    setText("siteTitle", "SIN – Strength in Numbers");
-    setText("statName", SIN_CONFIG.serverName);
-    setText("statMap", SIN_CONFIG.mapName);
-    setText("statWipe", formatWipe(SIN_CONFIG.lastWipe));
-    setText("announcement", SIN_CONFIG.announcement);
+    // =============================================================
+    // Bootstrap static content
+    // =============================================================
+    setTextById("statName", SIN_CONFIG.serverName);
+    setTextById("statMap", SIN_CONFIG.mapName);
+    setTextById("statWipe", formatWipe(SIN_CONFIG.lastWipe));
+    setTextById("announcement", SIN_CONFIG.announcement);
 
-    setText("statPlayers", "See Discord");
+    // Players placeholder
+    setTextById("statPlayers", "See Discord");
 
-    const discordLinks = [byId("discordLink"), byId("discordLink2")].filter(Boolean);
-    discordLinks.forEach(a => a.href = SIN_CONFIG.discord);
-
-    const workLinks = [byId("workshopLink"), byId("btnWorkshop")].filter(Boolean);
-    workLinks.forEach(a => a.href = SIN_CONFIG.workshop);
+    // Links
+    [byId("discordLink"), byId("discordLink2")].filter(Boolean).forEach(a => a.href = SIN_CONFIG.discord);
+    [byId("workshopLink"), byId("btnWorkshop")].filter(Boolean).forEach(a => a.href = SIN_CONFIG.workshop);
 
     const mapImg = byId("mapImage");
-    if (mapImg) mapImg.src = SIN_CONFIG.mapImage;
+    if (mapImg) {
+      mapImg.src = SIN_CONFIG.mapImage;
+      mapImg.addEventListener('error', () => {
+        mapImg.src = 'https://placehold.co/1400x900/0f1518/ffffff?text=Map+image+not+found';
+      }, { once: true });
+    }
 
-    setText("serverIP1", SIN_CONFIG.serverIP);
+    // IP copy + smooth scroll
+    setTextById("serverIP1", SIN_CONFIG.serverIP);
     byId("btnCopyIP").addEventListener("click", () => copyIP(SIN_CONFIG.serverIP));
+    byId("btnGetStarted").addEventListener("click", () => document.querySelector('#start').scrollIntoView({ behavior: 'smooth' }));
 
-    byId("btnGetStarted").addEventListener("click", () => {
-      document.querySelector('#start').scrollIntoView({ behavior: 'smooth' });
-    });
-
+    // Trader table
     const tbody = document.querySelector('#traderTable tbody');
     if (tbody && Array.isArray(SIN_CONFIG.traders)) {
       SIN_CONFIG.traders.forEach(t => {
@@ -404,88 +408,53 @@
       });
     }
 
-    setText("year", new Date().getFullYear());
+    // Footer year
+    setTextById("year", new Date().getFullYear());
 
+    // Utilities
     function copyIP(ip) {
-      navigator.clipboard.writeText(ip).then(() => {
-        toast(`Copied: ${ip}`);
-      }).catch(() => {
-        prompt("Copy the server IP:", ip);
-      });
+      navigator.clipboard.writeText(ip).then(() => toast(`Copied: ${ip}`)).catch(() => prompt("Copy the server IP:", ip));
     }
-
-    function formatWipe(x) {
-      if (!x) return "—";
-      const d = new Date(x);
-      return isNaN(d) ? x : d.toLocaleDateString();
-    }
-
+    function formatWipe(x) { if (!x) return '—'; const d = new Date(x); return isNaN(d) ? x : d.toLocaleDateString(); }
     function toast(msg) {
       const t = document.createElement('div');
       t.textContent = msg;
-      t.style.position = 'fixed';
-      t.style.bottom = '20px';
-      t.style.left = '50%';
-      t.style.transform = 'translateX(-50%)';
-      t.style.background = 'rgba(24,15,15,0.98)';
-      t.style.border = '1px solid var(--line)';
-      t.style.color = 'var(--fg)';
-      t.style.padding = '10px 14px';
-      t.style.borderRadius = '10px';
-      t.style.boxShadow = 'var(--shadow)';
-      t.style.zIndex = '9999';
-      document.body.appendChild(t);
-      setTimeout(() => t.remove(), 2000);
+      Object.assign(t.style, { position:'fixed', bottom:'20px', left:'50%', transform:'translateX(-50%)', background:'rgba(24,15,15,0.98)', border:'1px solid var(--line)', color:'var(--fg)', padding:'10px 14px', borderRadius:'10px', boxShadow:'var(--shadow)', zIndex:9999 });
+      document.body.appendChild(t); setTimeout(() => t.remove(), 2000);
+    }
+    function escapeHTML(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+    // =============================================================
+    // BattleMetrics — live players/max + online state
+    // =============================================================
+    const BM_SERVER_ID = "33663603";
+    const BM_POLL_MS   = 60000;       // poll ~60s
+
+    async function fetchBattleMetrics() {
+      try {
+        const res = await fetch(`https://api.battlemetrics.com/servers/${BM_SERVER_ID}`, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        const a = json?.data?.attributes || {};
+        const online = a.status === "online";
+        const players = a.players ?? 0;
+        const slots   = a.maxPlayers ?? 0;
+
+        
+        setTextById('statPlayers', `${players} / ${slots}`);
+        setTextSel('[data-sin="player-count"]', `${players} / ${slots}`);
+        setTextSel('[data-sin="server-online"]', online ? 'Online' : 'Offline');
+        const pill = document.querySelector('[data-sin="server-online"]');
+        if (pill) { pill.style.color = online ? 'var(--accent)' : 'var(--alert)'; }
+      } catch (e) {
+        console.error('BattleMetrics fetch failed:', e);
+        setTextById('statPlayers', '—');
+        setTextSel('[data-sin="player-count"]', '—');
+      }
     }
 
-    function escapeHTML(s) {
-      return String(s).replace(/[&<>"]+/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-    }
-
-    const CFTOOLS_HOST = "37.187.137.43";
-    const CFTOOLS_PORT = 2302;
-
-    const POLL_MS = 60000;
-    const CFTOOLS_URL = null;
-
-    function setHook(sel, text) {
-        const el = document.querySelector(sel);
-        if (el) el.textContent = text;
-    }
-
-    function applyStatus(data) {
-        const online  = data?.online === true;
-        const players = data?.status?.players ?? 0;
-        const slots   = data?.status?.slots ?? 0;
-        const queue   = data?.status?.queue?.size ?? 0;
-
-        setHook('[data-sin="server-online"]', online ? 'Online' : 'Offline');
-        setHook('[data-sin="player-count"]', `${players} / ${slots}`);
-        setHook('[data-sin="queue"]', `Queue: ${queue}`);
-    }
-
-    async function fetchCFToolsQuick() {
-        try {
-            const url = CFTOOLS_URL ??
-                `https://<GAME-DETAILS-ENDPOINT>/<by-host-and-port>?host=${encodeURIComponent(CFTOOLS_HOST)}&port=${CFTOOLS_PORT}`;
-
-            const res = await fetch(url, { cache: "no-store" });
-            if (!res.ok) {
-                const text = await res.text().catch(()=>'');
-                console.error(`CFTools ${res.status} ${res.statusText}`, text);
-                throw new Error(`HTTP ${res.status}`);
-            }
-            const data = await res.json();
-            applyStatus(data);
-        } catch (err) {
-            console.error("CFTools status error:", err);
-            setHook('[data-sin="player-count"]', '100');
-            setHook('[data-sin="queue"]', '9');
-        }
-    }
-
-    fetchCFToolsQuick();
-    setInterval(fetchCFToolsQuick, POLL_MS);
+    fetchBattleMetrics();
+    setInterval(fetchBattleMetrics, BM_POLL_MS);
   </script>
 </body>
 </html>
